@@ -11,7 +11,7 @@ const initialMoviesState = {
   showFavourites: false,
 };
 
-export default function movies(state = initialMoviesState, action) {
+export function movies(state = initialMoviesState, action) {
   // if (action.type === ADD_MOVIES) {
   //   console.log("test inside the reducer", action.movies);
   //   return {
@@ -51,4 +51,25 @@ export default function movies(state = initialMoviesState, action) {
     default:
       return state;
   }
+}
+
+const InitialSearchState = {
+  result: {},
+};
+
+export function search(state = InitialSearchState, action) {
+  return state;
+}
+
+const initialRootState = {
+  movies: initialMoviesState,
+  search: InitialSearchState,
+};
+
+// this is the main root reducer which will manage both movies and search reducer
+export default function rootReducer(state = initialRootState, action) {
+  return {
+    movies: movies(state.movies, action),
+    search: search(state.search, action),
+  };
 }
