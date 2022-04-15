@@ -1,3 +1,5 @@
+import { combineReducers } from "redux";
+
 import {
   ADD_MOVIES,
   ADD_FAVOURITE,
@@ -12,15 +14,6 @@ const initialMoviesState = {
 };
 
 export function movies(state = initialMoviesState, action) {
-  // if (action.type === ADD_MOVIES) {
-  //   console.log("test inside the reducer", action.movies);
-  //   return {
-  //     ...state,
-  //     list: action.movies,
-  //   };
-  // }
-  // return state;
-
   switch (action.type) {
     case ADD_MOVIES:
       return {
@@ -67,9 +60,15 @@ const initialRootState = {
 };
 
 // this is the main root reducer which will manage both movies and search reducer
-export default function rootReducer(state = initialRootState, action) {
-  return {
-    movies: movies(state.movies, action),
-    search: search(state.search, action),
-  };
-}
+// this method is already created for us by redux so we can comment it
+// export default function rootReducer(state = initialRootState, action) {
+//   return {
+//     movies: movies(state.movies, action),
+//     search: search(state.search, action),
+//   };
+// }
+
+export default combineReducers({
+  movies,
+  search,
+});
