@@ -36,7 +36,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { movies } = this.props.store.getState(); // {movies:{},search:{}}
+    const { movies, search } = this.props.store.getState(); // {movies:{},search:{}}
     const { list, favourites, showFavourites } = movies;
     //const { movies } = this.props;
     console.log("Render", this.props.store.getState());
@@ -45,7 +45,7 @@ class App extends React.Component {
     const { store } = this.props;
     return (
       <div className="App">
-        <Navbar store={store} />
+        <Navbar store={store} search={search} />
         <div className="main">
           <div className="tabs">
             <div

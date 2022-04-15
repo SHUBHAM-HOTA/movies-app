@@ -1,22 +1,18 @@
 import React, { Component } from "react";
 import { handleMovieSearch, addMoviesToList } from "../actions";
 import "../index.css";
-import { data } from "../data";
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSearchResults: true,
       searchText: "",
     };
   }
 
   handleAddToMovies = (movie) => {
-    this.props.dispatch(addMoviesToList(movie));
-    this.setState({
-      showSearchResults: false,
-    });
+    const { store } = this.props;
+    store.dispatch(addMoviesToList(movie));
   };
 
   handleSearch = () => {
@@ -32,7 +28,7 @@ class Navbar extends Component {
     });
   };
   render() {
-    const { showSearchResults } = this.state;
+    const { result: movie, showSearchResults } = this.props.search;
     return (
       <div className="nav">
         <div className="search-container">
@@ -43,14 +39,12 @@ class Navbar extends Component {
           {showSearchResults && (
             <div className="search-results">
               <div className="search-results">
-                <img src={data[0].Poster} alt="" />
+                <img src={movie.Poster} alt="" />
                 <div className="movie-info">
-                  <span>
-                    {data[0].Title}({data[0].Year})
-                  </span>
+                  <span>{movie.Title}</span>
                   <button
                     className="favourite-btn"
-                    onClick={() => this.handleAddToMovies(data[0])}
+                    onClick={() => this.handleAddToMovies(movie)}
                   >
                     Add To Movies
                   </button>
