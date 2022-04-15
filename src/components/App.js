@@ -42,9 +42,10 @@ class App extends React.Component {
     console.log("Render", this.props.store.getState());
 
     const displayMovies = showFavourites ? favourites : list;
+    const { store } = this.props;
     return (
       <div className="App">
-        <Navbar />
+        <Navbar store={store} />
         <div className="main">
           <div className="tabs">
             <div
