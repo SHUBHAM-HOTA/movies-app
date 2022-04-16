@@ -1,4 +1,5 @@
 import React, { createContext } from "react";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import { createStore, applyMiddleware } from "redux";
 
@@ -43,20 +44,61 @@ const logger =
 //     next(action);
 //   };
 
+// after installing of react-redux we dont need this
+
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
+// export const StoreContext = createContext();
 
-export const StoreContext = createContext();
+// after installing of react-redux we dont need this
 
-class Provider extends React.Component {
-  render() {
-    const { store } = this.props;
-    return (
-      <StoreContext.Provider value={store}>
-        {this.props.children}
-      </StoreContext.Provider>
-    );
-  }
-}
+// class Provider extends React.Component {
+//   render() {
+//     const { store } = this.props;
+//     return (
+//       <StoreContext.Provider value={store}>
+//         {this.props.children}
+//       </StoreContext.Provider>
+//     );
+//   }
+// }
+
+// after installing of react-redux we dont need this
+
+////const conectedAppComponent = connect(callback)(App);
+
+// export function connect(callback) {
+//   return function (Component) {
+//     class ConnectedComponent extends React.Component {
+//       constructor(props) {
+//         super(props);
+//         this.unsubscribe = this.props.store.subscribe(() => {
+//           this.forceUpdate();
+//         });
+//       }
+//       componentWillUnmount() {
+//         this.unsubscribe();
+//       }
+//       render() {
+//         const { store } = this.props;
+//         const state = store.getState();
+//         const dataToBePassedAsPropes = callback(state);
+//         return (
+//           <Component {...dataToBePassedAsPropes} dispatch={store.dispatch} />
+//         );
+//       }
+//     }
+//     class ConnectedComponentWrapper extends React.Component {
+//       render() {
+//         return (
+//           <StoreContext.Consumer>
+//             {(store) => <ConnectedComponent store={store} />}
+//           </StoreContext.Consumer>
+//         );
+//       }
+//     }
+//     return ConnectedComponentWrapper;
+//   };
+// }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
